@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zdyfop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: zdyfop
+  template:
+    metadata:
+      labels:
+        name: zdyfop
+    spec:
+      serviceAccountName: zdyfop
+      containers:
+        - name: zdyfop
+          # Replace this with the built image name
+          image: zdyfoperator:2.0
+          ports:
+          - containerPort: 7788
+            name: nginxf
+          command:
+          - zdyfop
+          imagePullPolicy: IfNotPresent 
+          env:
+            - name: WATCH_NAMESPACE
+              value: ""		
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "zdyfop"

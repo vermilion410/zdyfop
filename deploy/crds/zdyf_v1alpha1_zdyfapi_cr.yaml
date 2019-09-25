@@ -1,0 +1,85 @@
+apiVersion: zdyf.example.com/v1alpha1
+kind: Zdyfapi
+metadata:
+  name: example-zdyfapi
+spec:
+  nameimage: uhopper/hadoop-namenode:2.7.2
+  namereplicas: 1
+
+  namedepname: namenode-dep
+  namedeppodname: namenode-dep-pod
+  #namenode env
+  nameenvsname: CLUSTER_NAME
+  nameenvsvalue: hdfs-k8s
+  nameenvsname2:  CORE_CONF_fs_defaultFS
+  nameenvsvalue2: hdfs://namenode:8020
+
+  # namenode volume
+  namevolumesname: namenode-v
+  namevolumemountsname: hdfs-name
+  namevolumemountspath: /hadoop/dfs/name
+
+  # namenode pv
+  namepvname: namenode-pv-1
+  namepvstorage: 1Gi
+
+  # namenode pvc
+  namepvcname: namenode-1
+  namepvcstorage: 1Gi
+
+  #namenode container port
+  namecontainerportname1: nn-rpc
+  namecontainerport1: 8020
+  namecontainerportname2: nn-web
+  namecontainerport2: 50070
+  #namenode storage class
+  namescname: namenode-sc
+  #datanode
+  dataimage: uhopper/hadoop-datanode:2.7.2
+  datareplicas: 4
+  servicename: datanode-ser
+  #datanode env
+  dataenvsname: CORE_CONF_fs_defaultFS
+  dataenvsvalue: hdfs://namenode:8020
+  #datanode voluments
+  datavolumemountspath: /hadoop/dfs/data
+  #datapvc
+  datapvcname1: datanode-1
+  datapvcstorage1: 3Gi
+  datapvcname2: datanode-2
+  datapvcstorage2: 3Gi
+  #datanode port
+  datasport: 80
+  #datanode storageclass
+  datasc: datasc
+  #datapvstorage
+  datapvstorage1: 3Gi
+  datapvstorage2: 3Gi
+  datapvname1: datanode-pv-1
+  datapvname2: datanode-pv-2
+  datapvname3: datanode-pv-3
+  datapvname4: datanode-pv-4
+  datapvname5: datanode-pv-5
+
+  #nameenvsname3:  MAPRED_CONF_dfs_replication
+  #nameenvsvalue3: 1
+  #nameenvsname3:  MAPRED_CONF_mapred_job_tracker
+  # nameenvsvalue3: hdfs://10.48.84.142:9001/
+  #hdfs://namenode:8020
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

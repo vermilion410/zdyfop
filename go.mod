@@ -1,4 +1,4 @@
-module zdyfop
+module github.com/vermilion410/zdyfop
 
 require (
 	cloud.google.com/go v0.43.0 // indirect
